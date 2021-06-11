@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_11_204425) do
+ActiveRecord::Schema.define(version: 2021061105) do
 
   create_table "group_tasks", force: :cascade do |t|
     t.integer "task_id"
@@ -21,19 +21,17 @@ ActiveRecord::Schema.define(version: 2021_06_11_204425) do
     t.index ["task_id"], name: "index_group_tasks_on_task_id"
   end
 
-  create_table "group_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id", "user_id"], name: "index_group_users_on_group_id_and_user_id"
-    t.index ["user_id"], name: "index_group_users_on_user_id"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "groups_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.index ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
+    t.index ["user_id"], name: "index_groups_users_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -50,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_06_11_204425) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email"
   end
 
 end
