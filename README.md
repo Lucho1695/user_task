@@ -11,7 +11,14 @@ gem 'JWT'
 gem 'bcrypt'
 
 
-endpoints:
+Endpoints:
+```ruby
+    GET /users
+    GET /users/:id
+    POST /users
+    POST /task
+    POST /groups 
+```
 # Para crear un usuario se debe utilizar el metodo ```ruby post /users ```
 ```ruby
 post '/users'
