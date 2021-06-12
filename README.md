@@ -12,9 +12,12 @@ gem 'bcrypt'
 
 
 endpoints:
-# Para crear un usuario se debe utilizar el metodo post /users
-post '/users'       => 'users#create'
+# Para crear un usuario se debe utilizar el metodo ```ruby post /users ```
+```ruby
+post '/users'
+```
 # el body debe contener
+```ruby
 {
     "user": {
         "name": "Nombre",
@@ -22,14 +25,21 @@ post '/users'       => 'users#create'
         "password": "password"
     }
 }
+```
 # Muestra todos los usuarios que existen en la base de datos
-get '/users'        => 'users#index'
-
-# Para obtener el JWT token se debe ejecutar la metod post /user_token
-post 'user_token'   => 'user_token#create'
+```ruby
+get '/users'
+```
+# Para obtener el JWT token se debe ejecutar la metod ```ruby post /user_token ```
+```ruby
+post '/user_token'
+```
 # El header debera incluir
+```ruby
 key: Content-Type, value: application/json
+```
 # El body debera incluir el siguiente formato
+```ruby
 {
     "auth":
     {
@@ -37,14 +47,54 @@ key: Content-Type, value: application/json
         "password": "password"
     }
 }
+```
 
-# Para las siguientes consultas debe iniciar sesion para poder acceder.
+# Para las siguientes consultas debe tener el token obtenido en el paso anterior.
 
 # Muestra el usuario seleccionado con las respectivas relaciones de grupos y tareas
-get '/users/:id'    => 'users#show'
+```ruby
+get '/users/:id'
+```
+#* Header
+```ruby
+Key: Authorization, value: Bearer JWT
+```
 
-# Para crear una tarea se debe utilizar el metodo post /task
-post '/task'        => 'tasks#create'
+# Para crear una tarea se debe utilizar el metodo ```ruby post /task ```
+```ruby
+post '/task'
+```
+#* Header
+```ruby
+Key: Authorization, value: Bearer JWT
+```
+#* Body
+```ruby
+{
+    "task": {
+        "name": "name",
+        "description": "Lorem Ipsum",
+        "state": 1 o 2
+    }
+}
+```
+El estado del task esta definico como un enumerador sindo 1 = "Pendiente" y 2 = "Terminado"
 
-
-post '/groups'      => 'groups#create'
+# Para crear un grupo se debe utilizar el metodo ```ruby post /groups ```
+```ruby
+post '/groups'
+```
+#* Header
+```ruby
+Key: Authorization, value: Bearer JWT
+```
+#* Body
+```ruby
+{
+    "group": {
+        "name": "name",
+        "user_ids": ids de usuarios ej= [1, 2],
+        "task_ids": ids de las tareas ej= [1, 2]
+    }
+}
+```
