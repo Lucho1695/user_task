@@ -11,8 +11,12 @@ class GroupsController < ApplicationController
       },
       status: 200
     else
-      render json: "Validate the group params", status: 422
-
+      error = JSON.parse(group.errors.to_json).symbolize_keys
+      render json: {
+        status: 422,
+        message: "Group can't created",
+        error: "#{error}"
+      }
     end
   end
   private

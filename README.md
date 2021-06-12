@@ -1,24 +1,50 @@
-# README
+# Programa que permita ver los grupos y tareas de un usuario
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby Version 2.7.1
+Rails Version 6.1.3.2
 
-Things you may want to cover:
+Base de datos utilizada sqlite3.
 
-* Ruby version
+Gemas implementadas
+gem 'knock'
+gem 'JWT'
+gem 'bcrypt'
 
-* System dependencies
 
-* Configuration
+endpoints:
+# Para crear un usuario se debe utilizar el metodo post /users
+post '/users'       => 'users#create'
+# el body debe contener
+{
+    "user": {
+        "name": "Nombre",
+        "email": "email@email.email",
+        "password": "password"
+    }
+}
+# Muestra todos los usuarios que existen en la base de datos
+get '/users'        => 'users#index'
 
-* Database creation
+# Para obtener el JWT token se debe ejecutar la metod post /user_token
+post 'user_token'   => 'user_token#create'
+# El header debera incluir
+key: Content-Type, value: application/json
+# El body debera incluir el siguiente formato
+{
+    "auth":
+    {
+        "email": "email@email.email",
+        "password": "password"
+    }
+}
 
-* Database initialization
+# Para las siguientes consultas debe iniciar sesion para poder acceder.
 
-* How to run the test suite
+# Muestra el usuario seleccionado con las respectivas relaciones de grupos y tareas
+get '/users/:id'    => 'users#show'
 
-* Services (job queues, cache servers, search engines, etc.)
+# Para crear una tarea se debe utilizar el metodo post /task
+post '/task'        => 'tasks#create'
 
-* Deployment instructions
 
-* ...
+post '/groups'      => 'groups#create'

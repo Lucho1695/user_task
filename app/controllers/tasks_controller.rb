@@ -10,8 +10,12 @@ class TasksController < ApplicationController
       },
       status: 200
     else
-      render json: "Validate the task params", status: 422
-
+      error = JSON.parse(task.errors.to_json).symbolize_keys
+      render json: {
+        status: 422,
+        message: "User can't created",
+        error: "#{error}"
+      }
     end
   end
   private

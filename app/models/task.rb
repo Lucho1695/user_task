@@ -7,6 +7,6 @@ class Task < ApplicationRecord
 
   enum state: {
     "Pendiente": 1,
-    "Terminado": 0
+    "Terminado": 2
   }
 end

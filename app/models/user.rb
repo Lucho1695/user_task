@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates_presence_of   :email
-  validates_presence_of   :name
+  validates :name, presence: true, length: {maximum: 253, minimum: 2}
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  validates :email, presence: true, uniqueness: { case_sensitive: true }
+
   validates_uniqueness_of :email
 
   has_many :group_users, class_name: 'GroupsUsers'
