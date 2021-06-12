@@ -16,7 +16,7 @@ endpoints:
 ```ruby
 post '/users'
 ```
-# el body debe contener
+* el body debe contener
 ```ruby
 {
     "user": {
@@ -34,11 +34,11 @@ get '/users'
 ```ruby
 post '/user_token'
 ```
-# El header debera incluir
+* El header debera incluir
 ```ruby
 key: Content-Type, value: application/json
 ```
-# El body debera incluir el siguiente formato
+* El body debera incluir el siguiente formato
 ```ruby
 {
     "auth":
@@ -51,24 +51,26 @@ key: Content-Type, value: application/json
 
 # Para las siguientes consultas debe tener el token obtenido en el paso anterior.
 
-# Muestra el usuario seleccionado con las respectivas relaciones de grupos y tareas
+* Show User with task and group
+# Mostrar el usuario seleccionado con las respectivas relaciones de grupos y tareas
 ```ruby
 get '/users/:id'
 ```
-#* Header
+* Header
 ```ruby
 Key: Authorization, value: Bearer JWT
 ```
 
+* Create task
 # Para crear una tarea se debe utilizar el metodo ```ruby post /task ```
 ```ruby
 post '/task'
 ```
-#* Header
+* Header
 ```ruby
 Key: Authorization, value: Bearer JWT
 ```
-#* Body
+* Body
 ```ruby
 {
     "task": {
@@ -80,15 +82,16 @@ Key: Authorization, value: Bearer JWT
 ```
 El estado del task esta definico como un enumerador sindo 1 = "Pendiente" y 2 = "Terminado"
 
+* Create Group
 # Para crear un grupo se debe utilizar el metodo ```ruby post /groups ```
 ```ruby
 post '/groups'
 ```
-#* Header
+* Header
 ```ruby
 Key: Authorization, value: Bearer JWT
 ```
-#* Body
+* Body
 ```ruby
 {
     "group": {
